@@ -37,21 +37,13 @@ jobs:
       # Build the distributable package as well as the release patch
       - name: Build Objects
         # if: startsWith(github.ref, 'refs/tags')
-        run: nox -s build release_patch
+        run: nox -s build
 
       # Ensure the objects were packaged correctly and there wasn't an issue with
       # the compilation or packaging process.
       - name: Check Objects
         # if: startsWith(github.ref, 'refs/tags')
         run: twine check dist/*
-
-      # Upload the release patch for review within the actions workflow
-      - name: Upload Release Patch
-        # if: startsWith(github.ref, 'refs/tags')
-        uses: actions/upload-artifact@v3
-        with:
-          name: release-patch
-          path: dist/updates.patch
 
       # If this commit is the result of a Git tag, push the wheel and tar packages
       # to the PyPi registry

@@ -24,8 +24,6 @@ jobs:
       # Install the packages for linting and building the package
       - name: Prepare Build Environment
         run: |
-          python -m pip install -q --upgrade pip
-          python setup.py -q install
           pip install -q flake8 twine wheel nox
 
       # Lint the Python code to check for syntax errors or code smell

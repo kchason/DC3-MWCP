@@ -7,17 +7,17 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        # This workflow can be matrixed against multiple Python versions if desired. eg. [3.7, 3.8, 3.9, "3.10"]
-        python-version: [ "3.11" ]
+        # This workflow can be matrixed against multiple Python versions if desired. eg. [3.9, "3.10", "3.11", "3.12", "3.13"]
+        python-version: [ "3.12" ]
 
     steps:
       # Get the code from the repository to be linted, packaged, and pushed
       - name: Get Repo
-        uses: actions/checkout@v3
+        uses: actions/checkout@v6
 
       # Setup the Python environment
       - name: Set up Python ${{ matrix.python-version }}
-        uses: actions/setup-python@v4
+        uses: actions/setup-python@v6
         with:
           python-version: ${{ matrix.python-version }}
 

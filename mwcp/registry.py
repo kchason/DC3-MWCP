@@ -180,7 +180,6 @@ def register_parser_directory(directory, config_file_path=None, source_name=None
 
     :raises ValueError: If loaded config file is invalid.
     """
-    global _sources
 
     if not os.path.isdir(directory):
         raise ValueError(f"Parser directory not found or not a directory: {directory}")
@@ -212,7 +211,6 @@ def register_parser_package(package, config_file_path=None, source_name=None):
     :raises AttributeError: If config_file_path is not provided and package doesn't have a "config" attribute.
     :raises ValueError: If loaded config file is invalid.
     """
-    global _sources
 
     if not hasattr(package, "__path__"):
         raise ValueError(f"{package!r} is not a Python package")
@@ -392,8 +390,6 @@ def iter_parsers(name: str = None, source: str = None, config_only=True, _recurs
 
     :raises ValueError: If a parser name or source could not be found.
     """
-    global _sources
-
     if name and not source:
         # If name is using ":" notation, assume it is being organized by "source_name:parser_name"
         # (os.path.basename is necessary in-case source is a file path containing ":"'s)

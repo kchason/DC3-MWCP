@@ -9,16 +9,17 @@ Usage:
 import nox
 
 
-@nox.session(python="3.10")
+@nox.session(python="3.12")
 def test(session):
     """Run pytests"""
     session.install("-e", ".[testing]")
     session.run("pytest")
 
 
-@nox.session(python="3.10")
+@nox.session(python="3.12")
 def build(session):
     """Build source and wheel distribution"""
+    session.install("setuptools", "wheel")
     session.run("python", "setup.py", "sdist")
     session.run("python", "setup.py", "bdist_wheel")
 
